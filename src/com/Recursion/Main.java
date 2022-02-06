@@ -8,7 +8,7 @@ public class Main {
 	 */
         boolean[][] maze = {
                 {true,true,true},
-                {true,false,true},
+                {true,true,true},
                 {true,true,true }
         };
         allPaths("",maze,0,0);
@@ -21,6 +21,8 @@ public class Main {
         if(!maze[r][c]){
             return;
         }
+        // i am considering this block in my path
+        maze[r][c] = false;
         // for down
         if(r<maze.length-1){
             allPaths(p+"D",maze,r+1,c);
@@ -37,5 +39,8 @@ public class Main {
         if(c>0){
             allPaths(p+'L',maze,r,c-1);
         }
+        // this line where the function will be over.
+        // so before the functions get removed, also remove the changes that were made by that function.
+        maze[r][c] = true;
     }
 }
